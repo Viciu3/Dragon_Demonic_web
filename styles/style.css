@@ -1,0 +1,352 @@
+/* Базовые сбросы и общие стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #E0E0E0; /* Светлый серый для основного текста */
+    background-color: #121212; /* Очень темный фон */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+}
+
+/* Стили для скроллбара (только для WebKit-браузеров, таких как Chrome) */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #222; /* Темный фон для трека скроллбара */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #555; /* Серый цвет для ползунка */
+    border-radius: 6px;
+    border: 2px solid #222;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Адаптивные изображения и медиа */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px; /* Немного скругленные углы */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.responsive-img:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6); /* Усиленное свечение при наведении */
+}
+
+/* Стили для шапки (Header) */
+.header {
+    background-color: #1A1A1A; /* Темнее, чем фон body */
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.site-title {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #E0E0E0; /* Основной цвет текста, свечение красное */
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.site-title:hover {
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6);
+}
+
+
+/* Стили для кнопки гамбургер-меню */
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #E0E0E0; /* Основной цвет линий, свечение красное */
+    margin: 5px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+}
+
+/* Анимация гамбургера в "крестик" при открытии */
+.menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #E0E0E0; /* Цвет при активации, свечение красное */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6);
+}
+.menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #E0E0E0; /* Цвет при активации, свечение красное */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6);
+}
+
+/* Стили для навигации (Navigation) */
+.main-nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.main-nav.is-open {
+    max-height: 300px; /* Настройте, если нужно больше */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #222; /* Темный фон для открытого меню */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 0 0 8px 8px; /* Скругление внизу */
+    border: 1px solid rgba(255, 0, 0, 0.2); /* Красная рамка */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+}
+
+.main-nav li {
+    padding: 5px 0;
+}
+
+.main-nav a {
+    color: #E0E0E0; /* Светлый текст */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #333;
+    color: #FF0000; /* Чисто красный при наведении */
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6); /* Усиленное красное свечение */
+}
+
+/* Стили для основного контента (Main Content) */
+.main-content {
+    flex-grow: 1;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.hero-section {
+    background-color: #1A1A1A; /* Темный фон */
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+    border: 1px solid rgba(255, 0, 0, 0.3); /* Тонкая красная рамка */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #FF0000; /* Чисто красный */
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6); /* Усиленное красное свечение */
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #B0B0B0;
+}
+
+/* Стили для секции с особенностями (Features Section) с CSS Grid */
+.features-section {
+    background-color: #1A1A1A; /* Темный фон */
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.grid-container {
+    display: grid;
+    gap: 20px;
+}
+
+.feature-item {
+    background-color: #282828; /* Немного светлее, чем основной фон */
+    padding: 20px;
+    border: 1px solid rgba(255, 0, 0, 0.4); /* Красная рамка */
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6); /* Усиленное красное свечение */
+}
+
+.feature-item h3 {
+    color: #FF0000; /* Чисто красный */
+    margin-bottom: 10px;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6); /* Усиленное красное свечение */
+}
+
+/* Стили для футера (Footer) */
+.footer {
+    background-color: #1A1A1A; /* Темнее, чем фон body */
+    color: #B0B0B0; /* Светлый серый */
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto;
+    border-top: 1px solid #333;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Красное неоновое свечение */
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* =======================================
+   Медиа-запросы для адаптивного дизайна
+   ======================================= */
+
+/* Для планшетов и экранов больше 768px */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .main-nav {
+        max-height: none;
+        overflow: visible;
+        width: auto;
+    }
+
+    .main-nav ul {
+        flex-direction: row;
+        background-color: transparent;
+        padding: 0;
+        justify-content: flex-end;
+        border: none; /* Убираем рамку на десктопах */
+        box-shadow: none; /* Убираем тень на десктопах */
+    }
+
+    .main-nav a {
+        padding: 5px 10px;
+    }
+
+    .site-title {
+        font-size: 2.2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Для десктопов и экранов больше 1024px */
+@media (min-width: 1024px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+
+    .main-nav ul {
+        gap: 25px;
+    }
+
+    .hero-section {
+        padding: 60px 40px;
+    }
+
+    .hero-section h2 {
+        font-size: 3.5rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Дополнительные медиа-запросы для очень больших экранов */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* =======================================
+   Keyframe-анимации
+   ======================================= */
+
+/* Анимация плавного появления и сдвига вверх */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для элементов, которые появляются по мере скролла */
+/* Используем JavaScript для добавления класса 'is-visible' при попадании в видимую область */
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
